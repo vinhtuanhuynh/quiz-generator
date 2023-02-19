@@ -18,5 +18,3 @@ generate_btn.addEventListener('click', () => {
     console.log(selected_amount)
 }
 )
-
-

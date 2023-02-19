@@ -63,7 +63,8 @@ h2 {
     color: white;
 }
 
-.submit_btn:hover, .generate-btn:hover {
+.submit_btn:hover,
+.generate-btn:hover {
     background-color: #036b0e;
     cursor: pointer;
 }
