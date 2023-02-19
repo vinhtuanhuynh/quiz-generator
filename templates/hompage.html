@@ -8,24 +8,35 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>TechQuizGenie</h1>
-    <h2>Generate Tech Quiz Within A Click Of A Button</h2>
+    <h1>QuizGenie</h1>
+    <h2>Generate Quizzes Within A Click Of A Button</h2>
     <form class="selection-form" action="question.html">
         <label for="topic">Topic</label>
-        <input type="text"> 
+        <select id="topic">
+            <option value="General">General</option>
+            <option value="Books">Books</option>
+            <option value="Film">Film</option>
+            <option value="Music">Music</option>
+            <option value="Video Games">Video Games</option>
+            <option value="Sports">Sports</option>
+            <option value="Celebrities">Celebrities</option>
+            <option value="Animals">Animals</option>
+            <option value="Mathematics">Mathematics</option>
+        </select>
         <br>
         <label for="Number of questions">Number of questions</label>
         <input type="number">
         <br>
         <label for="Difficulty">Difficulty</label>
-        <select name="cars" id="cars">
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
+        <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
         </select>
-        <div class="btn-center">
-        <button class="generate-btn" id="generate">Generate</button>
-        </div>
     </form>
+    <div class="btn-center">
+        <button class="generate-btn" id="generate">Generate</button>
+    </div>
+    <script src="../scripts/homepage.js"></script>
 </body>
 </html>

@@ -37,12 +37,12 @@ h2 {
 }
 
 .generate-btn {
-    margin-top: 1rem;
+    margin-top: 2rem;
     border-radius: 30px;
     border: none;
     background-color: #03ac13;
     padding: 0.8rem;
-    width: 100%;
+    width: 400px;
     font-size: large;
     font-family: 'Poppins', sans-serif;
     color: white
