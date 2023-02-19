@@ -15,6 +15,10 @@ generate_btn.addEventListener('click', () => {
     selected_amount = amount.value
     //Store the user selection of difficulty
     selected_difficulty = difficulty.value
-    console.log(selected_amount)
+    localStorage.setItem("topic", selected_topic)
+    localStorage.setItem("amount", selected_amount)
+    localStorage.setItem("difficulty", selected_difficulty)
+    window.location = "../templates/question.html"
 }
 )
+
