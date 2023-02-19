@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="../styles/design.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>QuizGenie</h1>
-    <form action="question.html">
+    <h1>TechQuizGenie</h1>
+    <h2>Generate Tech Quiz Within A Click Of A Button</h2>
+    <form class="selection-form" action="question.html">
+        
         <label for="topic">Topic</label>
-        <input type="search">
+        <input type="text">
         <br>
         <label for="Number of questions">Number of questions</label>
         <input type="number">
@@ -22,8 +24,9 @@
             <option value="Medium">Medium</option>
             <option value="Hard">Hard</option>
         </select>
-        <br>
-        <input type="submit" value="Submit">
+        <div class="btn-center">
+        <button class="generate-btn" id="generate">Generate</button>
+        </div>
     </form>
 </body>
 </html>
