@@ -12,7 +12,7 @@
     <h2>Generate Quizzes Within A Click Of A Button</h2>
     <form class="selection-form" action="question.html">
         <label for="topic">Topic</label>
-        <select id="topic">
+        <select id="topicSelect">
             <option value="General">General</option>
             <option value="Books">Books</option>
             <option value="Film">Film</option>
@@ -25,10 +25,10 @@
         </select>
         <br>
         <label for="Number of questions">Number of questions</label>
-        <input type="number">
+        <input type="number" min="1" max="10">
         <br>
         <label for="Difficulty">Difficulty</label>
-        <select id="difficulty">
+        <select id="difficultySelect">
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
