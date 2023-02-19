@@ -63,12 +63,15 @@ h2 {
     color: white;
 }
 
-.submit_btn:hover {
+.submit_btn:hover, .generate-btn:hover {
     background-color: #036b0e;
     cursor: pointer;
 }
 
-input[type=text],
+input[type=radio] {
+    margin: 1rem;
+}
+
 input[type=number],
 select {
     margin: 5px 0 15px 0;
@@ -95,6 +98,6 @@ ul {
     list-style-type: none;
 }
 
-input[type=radio] {
-    margin: 1rem;
+form {
+    width: 450px;
 }
