@@ -68,8 +68,10 @@ h2 {
     cursor: pointer;
 }
 
-input, select {
-    margin: 5px 0 15px 0;   
+input[type=text],
+input[type=number],
+select {
+    margin: 5px 0 15px 0;
     width: 100%;
     padding: 15px 20px;
     display: inline-block;
@@ -91,4 +93,8 @@ input, select {
 
 ul {
     list-style-type: none;
+}
+
+input[type=radio] {
+    margin: 1rem;
 }
