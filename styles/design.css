@@ -40,6 +40,11 @@ h2 {
     font-size: large;
 }
 
+.submit_btn:hover {
+    background-color: red;
+    color: antiquewhite;
+}
+
 .feedback_btn {
     background-color: red;
     color: white;
