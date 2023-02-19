@@ -24,8 +24,8 @@ h2 {
 }
 
 .feedback-container {
-    padding-left: 1rem;
-    padding-bottom: 1rem;
+    padding-left: 3.5rem;
+    padding-bottom: 1.5rem;
     color: red;
     display: inline-flex;
 }
@@ -49,3 +49,12 @@ h2 {
     margin: 1rem;
     width: 50px;
 }
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    margin: 0.5rem;
+}
+
