@@ -9,6 +9,7 @@ let a_text = document.getElementById('a_text')
 let b_text = document.getElementById('b_text')
 let c_text = document.getElementById('c_text')
 let d_text = document.getElementById('d_text')
+let answers_list = document.querySelectorAll('.answer')
 let answer_texts = [a_text, b_text, c_text, d_text]
 
 async function getQuestions() {
@@ -48,6 +49,14 @@ function shuffleAnswers(answer_choices) {
         answer_texts[answerTextIndex].innerText = answer_choices[answerChoiceIndex];
         amount--;
     }
+}
+
+//remove check from all the option when loading a new question
+function deSelectAnswers() {
+    //uncheck all option
+    answers_list.forEach(option => {
+        option.checked = false
+    })
 }
 
 getQuestions()
