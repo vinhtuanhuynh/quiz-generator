@@ -11,9 +11,10 @@ let c_text = document.getElementById('c_text')
 let d_text = document.getElementById('d_text')
 let answers_list = document.querySelectorAll('.answer')
 let answer_texts = [a_text, b_text, c_text, d_text]
-let feedback_container =  document.getElementById('feedback')
+let feedback_container = document.getElementById('feedback')
 let feedback_text = document.getElementById('feedback_text')
 let submit_btn = document.getElementById('submit')
+let next_btn = document.getElementById('next')
 
 async function getQuestions() {
     // Making an API call (request)and getting the response back
@@ -30,6 +31,8 @@ function loadQuestion() {
     deSelectAnswers()
     //hide the feedback container
     feedback_container.style.display = "none"
+    //re-enable the submit button
+    submit_btn.disabled = false
     //get the data of the current question and display to html
     let current_question_data = questionList[current_question];
     question_text.innerText = current_question_data.question;
@@ -39,6 +42,7 @@ function loadQuestion() {
         current_question_data.incorrect_answers[1],
         current_question_data.incorrect_answers[2],
     ]
+    //call the function to shuffle the answers 
     shuffleAnswers(answer_choices)
 }
 
@@ -56,6 +60,8 @@ function shuffleAnswers(answer_choices) {
         answer_texts[answerTextIndex].innerText = answer_choices[answerChoiceIndex];
         amount--;
     }
+    randGeneratedAr.length = 0
+    randGeneratedAr2.length = 0
 }
 
 //remove check from all the option when loading a new question
@@ -81,7 +87,7 @@ function getSelected() {
 //submit button on click
 submit_btn.addEventListener('click', () => {
     let answer_id = getSelected();
-    let selector = 'label[for='+ answer_id+ ']';
+    let selector = 'label[for=' + answer_id + ']';
     let selectedLabel = document.querySelector(selector);
     let answer = selectedLabel.innerHTML
     let current_question_data = questionList[current_question];
@@ -96,6 +102,18 @@ submit_btn.addEventListener('click', () => {
         } else {
             feedback_text.textContent = 'The correct answer is ' + current_question_data.correct_answer + "!"
         }
+    }
+})
+
+//next question
+next_btn.addEventListener('click', () => {
+    //move on to the next question
+    current_question++
+    if (current_question < 10) {
+        loadQuestion()
+    //If run out of question 
+    } else {
+
     }
 })
 
