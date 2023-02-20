@@ -11,6 +11,8 @@ let c_text = document.getElementById('c_text')
 let d_text = document.getElementById('d_text')
 let answers_list = document.querySelectorAll('.answer')
 let answer_texts = [a_text, b_text, c_text, d_text]
+let feedback_container =  document.getElementById('feedback')
+let feedback_text = document.getElementById('feedback_text')
 let submit_btn = document.getElementById('submit')
 
 async function getQuestions() {
@@ -25,6 +27,10 @@ async function getQuestions() {
 
 //function to load the question from the API into the created html
 function loadQuestion() {
+    deSelectAnswers()
+    //hide the feedback container
+    feedback_container.style.display = "none"
+    //get the data of the current question and display to html
     let current_question_data = questionList[current_question];
     question_text.innerText = current_question_data.question;
     let answer_choices = [
@@ -60,7 +66,7 @@ function deSelectAnswers() {
     })
 }
 
-//get the answer id the user selected
+//get the answer the user selected
 function getSelected() {
     let answer_id = '';
     answers_list.forEach((option) => {
@@ -71,5 +77,26 @@ function getSelected() {
     })
     return answer_id
 }
+
+//submit button on click
+submit_btn.addEventListener('click', () => {
+    let answer_id = getSelected();
+    let selector = 'label[for='+ answer_id+ ']';
+    let selectedLabel = document.querySelector(selector);
+    let answer = selectedLabel.innerHTML
+    let current_question_data = questionList[current_question];
+    if (answer != '') {
+        //disabled the button once an answer is selected
+        submit_btn.disabled = true
+        //show the container for feedback
+        feedback_container.style.display = ""
+        //If the answer is correct, display feedback
+        if (answer == current_question_data.correct_answer) {
+            feedback_text.textContent = 'Your answer is correct'
+        } else {
+            feedback_text.textContent = 'The correct answer is ' + current_question_data.correct_answer + "!"
+        }
+    }
+})
 
 getQuestions()
