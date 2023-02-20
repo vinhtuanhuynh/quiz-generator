@@ -24,6 +24,7 @@ let quiz_container = document.getElementById('quiz');
 //buttons
 let submit_btn = document.getElementById('submit');
 let next_btn = document.getElementById('next');
+let return_btn = document.getElementById('return');
 
 //API call
 async function getQuestions() {
@@ -121,7 +122,7 @@ submit_btn.addEventListener('click', () => {
     }
 })
 
-//next question
+//next question on click
 next_btn.addEventListener('click', () => {
     //move on to the next question
     curr_question_index++
@@ -131,9 +132,15 @@ next_btn.addEventListener('click', () => {
     } else {
         quiz_container.innerHTML = `
         <h2>Your score is ${score}/${localStorage.getItem("amount")}</h2>
-        `;
+        <button class="return_btn" id="return" onclick="home()">Return to homepage</button>
+        `
     }
 })
+
+//return btn on click
+function home() {
+    window.location = "../templates/homepage.html";
+}
 
 //on page load
 getQuestions();
