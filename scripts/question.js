@@ -4,6 +4,7 @@ const api_url = "https://opentdb.com/api.php?amount=" + localStorage.getItem("am
                 "&type=multiple";
 const randGeneratedAr = []
 const randGeneratedAr2 = []
+const loader = document.querySelector("#loader");
 
 let score = 0
 //question and answers related variables
@@ -28,6 +29,8 @@ let return_btn = document.getElementById('return');
 
 //API call
 async function getQuestions() {
+    //show loader while making loading questions
+    displayLoading();
     //making an API call (request)and getting the response back
     const response = await fetch(api_url);
     //parsing it to JSON format
@@ -136,6 +139,19 @@ next_btn.addEventListener('click', () => {
         `
     }
 })
+
+//function to show loader
+function displayLoading() {
+    //hide the quiz container and show the loader
+    quiz_container.style.display = "none";
+    loader.style.display = "";
+    //to stop loading after some time
+    setTimeout(() => {
+        //show the quiz container and hide the loader
+        quiz_container.style.display = "";
+        loader.style.display = "none";
+    }, 4000);
+}
 
 //return btn on click
 function home() {
