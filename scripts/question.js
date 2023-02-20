@@ -155,7 +155,7 @@ function displayLoading() {
 
 //return btn on click
 function home() {
-    window.location = "../templates/homepage.html";
+    window.location = "../templates/index.html";
 }
 
 //on page load
