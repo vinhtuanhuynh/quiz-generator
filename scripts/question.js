@@ -1,4 +1,7 @@
-const api_url = "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple";
+const api_url = "https://opentdb.com/api.php?amount=" + localStorage.getItem("amount") +
+                "&category=" + localStorage.getItem("topic") +
+                "&difficulty=" + localStorage.getItem("difficulty") +
+                "&type=multiple";
 const randGeneratedAr = []
 const randGeneratedAr2 = []
 
@@ -42,7 +45,11 @@ function loadQuestion() {
     submit_btn.disabled = false
     //get the data of the current question and display to html
     let current_question_data = questionList[curr_question_index];
-    question_text.innerText = current_question_data.question;
+    //replace the following character from the API
+    let curr_question = current_question_data.question
+    curr_question = curr_question.replace(/&quot;|&#039;|&ldquo;|&rdquo;/gi,"'");
+    curr_question = curr_question.replace(/&amp;/gi, '&');
+    question_text.innerText = curr_question
     let answer_choices = [
         current_question_data.correct_answer,
         current_question_data.incorrect_answers[0],
