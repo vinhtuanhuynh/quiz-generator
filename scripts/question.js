@@ -2,27 +2,34 @@ const api_url = "https://opentdb.com/api.php?amount=10&category=9&difficulty=eas
 const randGeneratedAr = []
 const randGeneratedAr2 = []
 
-let current_question = 0;
+let score = 0
+//question and answers related variables
 let questionList = "";
-let question_text = document.getElementById('question')
-let a_text = document.getElementById('a_text')
-let b_text = document.getElementById('b_text')
-let c_text = document.getElementById('c_text')
-let d_text = document.getElementById('d_text')
-let answers_list = document.querySelectorAll('.answer')
-let answer_texts = [a_text, b_text, c_text, d_text]
-let feedback_container = document.getElementById('feedback')
-let feedback_text = document.getElementById('feedback_text')
-let submit_btn = document.getElementById('submit')
-let next_btn = document.getElementById('next')
+let curr_question_index = 0;
+let question_text = document.getElementById('question');
+let a_text = document.getElementById('a_text');
+let b_text = document.getElementById('b_text');
+let c_text = document.getElementById('c_text');
+let d_text = document.getElementById('d_text');
+let num_choices = 4;
+let answers_list = document.querySelectorAll('.answer');
+let answer_texts = [a_text, b_text, c_text, d_text];
+let feedback_text = document.getElementById('feedback_text');
+//containers
+let feedback_container = document.getElementById('feedback');
+let quiz_container = document.getElementById('quiz');
+//buttons
+let submit_btn = document.getElementById('submit');
+let next_btn = document.getElementById('next');
 
+//API call
 async function getQuestions() {
-    // Making an API call (request)and getting the response back
+    //making an API call (request)and getting the response back
     const response = await fetch(api_url);
-    // Parsing it to JSON format
+    //parsing it to JSON format
     const data = await response.json();
     questionList = data.results
-    //After we get the response from the API, load the question
+    //after we get the response from the API, load the question
     loadQuestion();
 }
 
@@ -34,7 +41,7 @@ function loadQuestion() {
     //re-enable the submit button
     submit_btn.disabled = false
     //get the data of the current question and display to html
-    let current_question_data = questionList[current_question];
+    let current_question_data = questionList[curr_question_index];
     question_text.innerText = current_question_data.question;
     let answer_choices = [
         current_question_data.correct_answer,
@@ -46,9 +53,9 @@ function loadQuestion() {
     shuffleAnswers(answer_choices)
 }
 
-//function to assign an answer from the API with a random letter (a, b, c, d)
+//function to assign an answer from the API with a random choice (a, b, c, d)
 function shuffleAnswers(answer_choices) {
-    let amount = answer_choices.length;
+    let amount = num_choices
     while (amount) {
         let answerTextIndex = Math.floor(Math.random() * 4);
         let answerChoiceIndex = Math.floor(Math.random() * 4);
@@ -57,6 +64,7 @@ function shuffleAnswers(answer_choices) {
         }
         randGeneratedAr.push(answerTextIndex);
         randGeneratedAr2.push(answerChoiceIndex);
+        //assigning the answers to a, b, c or d
         answer_texts[answerTextIndex].innerText = answer_choices[answerChoiceIndex];
         amount--;
     }
@@ -89,18 +97,19 @@ submit_btn.addEventListener('click', () => {
     let answer_id = getSelected();
     let selector = 'label[for=' + answer_id + ']';
     let selectedLabel = document.querySelector(selector);
-    let answer = selectedLabel.innerHTML
-    let current_question_data = questionList[current_question];
+    let answer = selectedLabel.innerHTML;
+    let current_question_data = questionList[curr_question_index];
     if (answer != '') {
         //disabled the button once an answer is selected
-        submit_btn.disabled = true
+        submit_btn.disabled = true;
         //show the container for feedback
-        feedback_container.style.display = ""
+        feedback_container.style.display = "";
         //If the answer is correct, display feedback
         if (answer == current_question_data.correct_answer) {
-            feedback_text.textContent = 'Your answer is correct'
+            feedback_text.textContent = 'Your answer is correct';
+            score++;
         } else {
-            feedback_text.textContent = 'The correct answer is ' + current_question_data.correct_answer + "!"
+            feedback_text.textContent = 'The correct answer is ' + current_question_data.correct_answer + "!";
         }
     }
 })
@@ -108,13 +117,16 @@ submit_btn.addEventListener('click', () => {
 //next question
 next_btn.addEventListener('click', () => {
     //move on to the next question
-    current_question++
-    if (current_question < 10) {
-        loadQuestion()
-    //If run out of question 
+    curr_question_index++
+    if (curr_question_index < 10) {
+        loadQuestion();
+    //if run out of question 
     } else {
-
+        quiz_container.innerHTML = `
+        <h2>Your score is ${score}/${10}</h2>
+        `;
     }
 })
 
-getQuestions()
+//on page load
+getQuestions();
