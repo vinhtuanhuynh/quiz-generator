@@ -64,8 +64,8 @@ function loadQuestion() {
 function shuffleAnswers(answer_choices) {
     let amount = num_choices
     while (amount) {
-        let answerTextIndex = Math.floor(Math.random() * 4);
-        let answerChoiceIndex = Math.floor(Math.random() * 4);
+        let answerTextIndex = Math.floor(Math.random() * num_choices);
+        let answerChoiceIndex = Math.floor(Math.random() * num_choices);
         if (randGeneratedAr.includes(answerTextIndex) || randGeneratedAr2.includes(answerChoiceIndex)) {
             continue;
         }
@@ -125,12 +125,12 @@ submit_btn.addEventListener('click', () => {
 next_btn.addEventListener('click', () => {
     //move on to the next question
     curr_question_index++
-    if (curr_question_index < 10) {
+    if (curr_question_index < localStorage.getItem("amount")) {
         loadQuestion();
     //if run out of question 
     } else {
         quiz_container.innerHTML = `
-        <h2>Your score is ${score}/${10}</h2>
+        <h2>Your score is ${score}/${localStorage.getItem("amount")}</h2>
         `;
     }
 })
