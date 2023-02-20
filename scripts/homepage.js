@@ -28,11 +28,13 @@ generate_btn.addEventListener('click', () => {
     localStorage.setItem("difficulty", selected_difficulty)
     //alert
     alert(selected_amount + " question about " + topics.options[topics.selectedIndex].text  + " has been generated!")
+    go_btn.disabled = false
 }
 )
 
 //on page load function
 function onPageLoad() {
+    go_btn.disabled = true
     localStorage.clear()
 }
 
